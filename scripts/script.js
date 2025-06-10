@@ -6,13 +6,9 @@ themeButtons.forEach((button) => {
       btn.classList.remove('header__theme-menu-button_active');
       btn.removeAttribute('disabled');
     });
-    if (
-      [...button.classList].includes('header__theme-menu-button_type_light')
-    ) {
+    if ([...button.classList].includes('header__theme-menu-button_type_light')) {
       changeTheme('light');
-    } else if (
-      [...button.classList].includes('header__theme-menu-button_type_dark')
-    ) {
+    } else if ([...button.classList].includes('header__theme-menu-button_type_dark')) {
       changeTheme('dark');
     } else {
       changeTheme('auto');
