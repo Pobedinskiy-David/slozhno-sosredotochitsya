@@ -1,5 +1,454 @@
-/* Основные стили проекта. Это стили для темы, которую вы верстаете первой. */
+/* =========================== */
+/*        Общие стили         */
+/* =========================== */
 
 .page {
-  /* сохраните в разметке и стилях класс page. На его основе работает скрипт. */
+  background-color: var(--background-color);
+  font-family: var(--font-family), sans-serif;
+  font-size: 18px;
+}
+
+/* =========================== */
+/*         Шапка сайта         */
+/* =========================== */
+
+.header {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  position: relative;
+  padding-block: var(--padding-block);
+  padding-inline: var(--padding-inline);
+  background-image: var(--background-image);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  block-size: max(668px, 100vh);
+}
+
+/* Навигация (меню тем) */
+.header__theme-menu {
+  grid-column: 1 / 3;
+}
+
+.header__theme-menu-list {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: center;
+  gap: 10px;
+}
+
+.header__theme-menu-item {
+  min-block-size: 26px;
+  min-inline-size: 70px;
+}
+
+.header__theme-menu-button {
+  background-color: transparent;
+  color: var(--accent-color);
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  font-style: normal;
+  text-transform: lowercase;
+  text-align: center;
+  line-height: 18px;
+  min-inline-size: 70px;
+  block-size: 26px;
+}
+
+.header__theme-menu-button_active {
+  border: 1px solid var(--accent-color);
+  pointer-events: none;
+}
+
+.header__theme-menu-button:hover {
+  border: var(--menu-button-hover);
+}
+
+.header__theme-menu-button:focus {
+  outline: none;
+}
+
+.header__theme-menu-button:focus-visible {
+  box-shadow: 0 1px 0 var(--accent-color);
+}
+
+/* Надпись REC */
+.record-caption {
+  position: absolute;
+  top: 20px;
+  right: 48px;
+  color: var(--accent-color);
+  font-size: 18px;
+  line-height: 25px;
+}
+
+.record-caption::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 43px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  box-shadow: 0 0 4px 2px var(--accent-color);
+}
+
+/* Кадр вокруг секций header и footer */
+.record-frame::after {
+  content: '';
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 25px;
+  height: 25px;
+  border-top: 1px solid var(--accent-color);
+  border-right: 1px solid var(--accent-color);
+}
+
+.record-frame::before {
+  content: '';
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 25px;
+  height: 25px;
+  border-left: 1px solid var(--accent-color);
+  border-bottom: 1px solid var(--accent-color);
+}
+
+/* Заголовок и текст в шапке */
+.header__title {
+  grid-column: 1 / 3;
+  margin-inline-start: -20px;
+  align-self: center;
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: 700;
+  font-size: var(--title-font-size);
+  line-height: 82.5%;
+  color: var(--main-title-color);
+  text-shadow: var(--text-shadow);
+}
+
+.header__text {
+  grid-column: 2 / 3;
+  align-self: start;
+  margin-block-start: 57px;
+}
+
+/* =========================== */
+/*     Основной контент       */
+/* =========================== */
+
+.content {
+  padding-inline: var(--padding-inline);
+}
+
+/* Заголовки и текст */
+.content__title {
+  font-size: inherit;
+  font-weight: 700;
+  line-height: 130%;
+  color: var(--accent-color);
+}
+
+.content__title-secondary {
+  font-size: inherit;
+  font-weight: 700;
+  line-height: 130%;
+  background-color: var(--title-background-color);
+  color: var(--title-color);
+}
+
+.content__text {
+  margin-block-start: 10px;
+  color: var(--text-color);
+}
+
+/* Ссылки внутри текста */
+.text__link {
+  text-decoration: none;
+  text-shadow: 2px 2px 0 var(--link-color);
+}
+
+.text__link:hover {
+  border-bottom: 2px solid var(--text-color);
+}
+
+.text__link:focus {
+  outline: none;
+}
+
+.text__link:focus-visible {
+  outline: 1px solid var(--text-color);
+}
+
+/* =========================== */
+/*          Секции            */
+/* =========================== */
+
+.section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 20px;
+  row-gap: 24px;
+  margin-block-start: var(--margin-top-xl);
+}
+
+.section:nth-of-type(1) {
+  margin-block-start: var(--margin-top-l);
+}
+
+.section:nth-of-type(odd) .card {
+  grid-column: 2 / 4;
+}
+
+.section:nth-of-type(odd) .section__content-container .card {
+  margin-block-end: 20px;
+}
+
+.section:nth-of-type(even) .section__title {
+  grid-column: 1 / 4;
+  width: calc((100% - 40px) / 3);
+}
+
+/* Обёртка для контента внутри секции */
+.section__content-container {
+  grid-column: 2 / 4;
+}
+
+/* Дополнительные подписи секций */
+.section__additional-title {
+  margin-block-end: 20px;
+}
+
+.how__card_subtitle {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+/* =========================== */
+/*         Галерея            */
+/* =========================== */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gallery-gap);
+  margin-block-start: 60px;
+}
+
+.gallery__title {
+  grid-column: 1 / 4;
+  align-self: start;
+  font-size: inherit;
+}
+
+.gallery__card {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.gallery__card:nth-child(2) {
+  grid-column: 1 / 3;
+  grid-row: 2 / 3;
+}
+
+.gallery__card:nth-child(3) {
+  grid-column: 3 / 4;
+  grid-row: 2 / 4;
+}
+
+.gallery__card:nth-child(4) {
+  grid-column: 1 / 2;
+  grid-row: 3 / 5;
+}
+
+.gallery__card:nth-child(5) {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+}
+
+.gallery__card:nth-child(6) {
+  grid-column: 2 / 4;
+  grid-row: 4 / 5;
+}
+
+/* =========================== */
+/*          Футер             */
+/* =========================== */
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  block-size: max(668px, 100vh);
+  margin-block-start: var(--margin-top-l);
+  padding: 20px;
+}
+
+.footer__title {
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: 700;
+  font-size: var(--title-font-size);
+  line-height: 82.5%;
+  color: var(--main-title-color);
+  text-shadow: var(--footer-text-shadow);
+}
+
+/* =========================== */
+/*        Медиа-запросы       */
+/* =========================== */
+
+@media (width <= 992px) {
+  .header {
+    block-size: 1024px;
+  }
+
+  .header__theme-menu {
+    align-self: end;
+    grid-column: 2 / 3;
+    margin-block-end: 57px;
+  }
+
+  .header__theme-menu-list {
+    grid-template-columns: 1fr;
+    justify-items: end;
+  }
+
+  .header__text {
+    margin-block-start: 48px;
+  }
+
+  .section:nth-of-type(odd) {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .section:nth-of-type(odd) .card {
+    grid-column: 2 / 3;
+  }
+
+  .section:nth-of-type(even) {
+    grid-template-columns: 1fr;
+  }
+
+  .section:nth-of-type(even) .section__title {
+    grid-column: 1 / 2;
+  }
+
+  .section__content-container {
+    grid-column: 2 / 3;
+  }
+}
+
+@media (width < 768px) {
+  :root {
+    --gallery-gap: 10px;
+    --margin-top-l: 40px;
+    --margin-top-xl: 50px;
+    --padding-block: 10px;
+    --padding-inline: 10px;
+    --title-font-size: 116px;
+  }
+
+  .header {
+    grid-template-columns: 1fr;
+    justify-content: center;
+  }
+
+  .header__theme-menu {
+    grid-column: 1 / 2;
+    margin-block-end: 52px;
+  }
+
+  .header__title {
+    grid-column: 1 / 2;
+    margin-inline-start: 0;
+    margin-block-end: 15px;
+  }
+
+  .header__text {
+    grid-column: 1 / 2;
+    margin-block-start: 43px;
+  }
+
+  .record-caption {
+    right: 38px;
+    top: 10px;
+  }
+
+  .record-frame::after {
+    right: 10px;
+    top: 10px;
+  }
+
+  .record-frame::before {
+    bottom: 10px;
+    left: 10px;
+  }
+
+  .section:nth-of-type(1) {
+    margin-block-start: 40px;
+  }
+
+  .section:nth-of-type(odd) {
+    grid-template-columns: 1fr;
+  }
+
+  .section:nth-of-type(odd) .card {
+    grid-column: 1 / 3;
+  }
+
+  .section:nth-of-type(even) {
+    grid-template-columns: 1fr;
+  }
+
+  .section:nth-of-type(even) .section__title {
+    grid-column: 1;
+    width: 100%;
+  }
+
+  .section__content-container {
+    grid-column: 1 / 3;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery__title {
+    grid-column: 1 / 2;
+  }
+
+  .gallery__card:nth-child(2) {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+  }
+
+  .gallery__card:nth-child(3) {
+    grid-column: 1 / 2;
+    grid-row: 3 / 4;
+  }
+
+  .gallery__card:nth-child(4) {
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
+  }
+
+  .gallery__card:nth-child(5) {
+    grid-column: 1 / 2;
+    grid-row: 5 / 6;
+  }
+
+  .gallery__card:nth-child(6) {
+    grid-column: 1 / 2;
+    grid-row: 6 / 7;
+  }
 }
